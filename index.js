@@ -37,7 +37,7 @@ var interceptor=interceptor((request,response)=>{
 function inter(req,res,next){
     console.log(req)
 }
-
+process.env.NODE_ENV = 'production';
 const app = express();
 app.use(cors())
 app.use(validator());

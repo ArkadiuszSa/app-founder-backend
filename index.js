@@ -59,6 +59,6 @@ app.use('/api', require('./routes/offer'));
 
 app.use('/assets/img', express.static(__dirname+'/assets/img'))
 
-app.listen(process.env.port || 4000, function(){
+app.listen(process.env.PORT || 4000, function(){
     console.log('now listening for requests');
 });

@@ -7,7 +7,7 @@ var bcrypt = require('bcryptjs');
 
 
 router.get('/users', function(req, res, next){
-  User.find({}).then(function(data){
+  User.find({'visable':true}).then(function(data){
     res.send(data);
   }).catch(res=>{
     console.log(res);

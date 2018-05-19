@@ -10,17 +10,19 @@ router.post('/register', function(req, res, next){
     var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   
     User.create({
-      name : req.body.name,
       email : req.body.email,
       password : hashedPassword
     },
     function (err, user) {
       if (err) return res.status(500).send("There was a problem registering the user.")
-      // create a token
-      var token = jwt.sign({ id: user._id }, 'secretPassword', {
-        expiresIn: 86400 // expires in 24 hours
-      });
-      res.status(200).send({ auth: true, token: token });
+      var token = jwt.sign({
+        id: user._id,
+        role:'user',
+        expiresIn: 86400
+       }, 'secretPassword', {
+       expiresIn: 3600 // expires in 24 hours
+     });
+     res.status(200).send({ auth: true, token: token, id: user._id, role:'user'});
     }); 
 });
 
@@ -43,6 +45,22 @@ router.post('/login', function(req, res) {
     res.status(200).send({ auth: true, token: token, id: user._id, role:'user'});
   });
 });
+
+router.post('/check-email', function(req, res) {
+
+
+  console.log(req.body)
+  User.findOne({ email: req.body.email }, function (err, user) {
+    console.log(user)
+    if(user!==null){
+      res.send({response:'finded'})
+    }
+    else{
+      res.send({response:'notFinded'})
+    }
+  });
+});
+
 
 
 module.exports = router;

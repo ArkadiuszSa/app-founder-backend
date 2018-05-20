@@ -49,7 +49,7 @@ app.use(busboyBodyParser({ limit: '10mb' }) );
 app.use('/api', require('./routes/user'));
 app.use('/api', require('./routes/project'));
 app.use('/api', require('./routes/team'));
-app.use('/api', require('./routes/login'));
+app.use('/api', require('./routes/auth'));
 app.use('/api', require('./routes/asset'));
 app.use('/api', require('./routes/invitation'));
 app.use('/api', require('./routes/offer'));

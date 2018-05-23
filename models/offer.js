@@ -8,6 +8,11 @@ const offerSchema = new Schema({
     teamId: {
         type: String
     },
+    state:{
+        type:String,
+        enum:['new','accepted','rejected'],
+        default:'new'
+    },
     description: {
         type: String
     },

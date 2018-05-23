@@ -9,7 +9,9 @@ const invitationSchema = new Schema({
         type: String
     },
     state:{
-        type:String
+        type:String,
+        enum:['waitingOnUser','waitingOnTeam','rejected','accepted'],
+        default:'new'
     },
     description: {
         type: String

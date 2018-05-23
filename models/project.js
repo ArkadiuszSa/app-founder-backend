@@ -9,7 +9,9 @@ const projectSchema = new Schema({
         type: String
     },
     status: {
-        type: String
+        type:String,
+        enum:['new','inProgress','finished'],
+        default:'new'
     },
     ownerId: {
         type: String

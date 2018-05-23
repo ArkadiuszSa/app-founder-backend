@@ -27,7 +27,7 @@ router.post('/offer', function(req, res, next){
   console.log(req.body);
   Offer.create(req.body).then(function(offer){
       res.send(offer);
-  })
+  }).catch(next);
 })
 
 

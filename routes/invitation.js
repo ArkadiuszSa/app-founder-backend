@@ -11,11 +11,15 @@ router.get('/invitations', function(req, res, next){
 })
 
 router.get('/user-invitations/:userId', function(req, res, next){
-  console.log('kupa');
-  Invitation.find({userId: req.params.userId}).then(function(invitation){
-    console.log('elo');
-    console.log(invitation);
-    res.send(invitation);
+
+  Invitation.find({userId: req.params.userId}).then(function(invitations){
+    res.send(invitations);
+  })
+})
+
+router.get('/team-invitations/:teamId', function(req, res, next){
+  Invitation.find({teamId: req.params.teamId}).then(function(invitations){
+    res.send(invitations);
   })
 })
 
@@ -26,7 +30,6 @@ router.get('/invitation/:id', function(req, res, next){
 })
 
 router.post('/invitation', function(req, res, next){
-  console.log(req.body);
   Invitation.create(req.body).then(function(invitation){
       res.send(invitation);
   })

@@ -39,7 +39,11 @@ const projectSchema = new Schema({
     }
     
 
-});
+}
+
+);
+
+projectSchema.index({title:'text',technologies:'text'})
 
 const Project = mongoose.model('project', projectSchema);
 

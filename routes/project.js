@@ -68,14 +68,34 @@ router.post('/projects-range-filtred/:from&:to', function(req, res, next){
     })
   }
 
+  findProjects(query,sort,req,res, next)
+
+});
+
+async function findProjects(query,sort,req,res, next) {
+
+  query.push({
+    [sort.type]:{$exists:true}
+  })
+
+  let notEmptySortProjects=await Project.find({
+    $and:query
+    },{},{sort:{[sort.type]:sort.value}}
+  ).then(function(projects){
+    return projects;
+  })
+
+  query[query.length-1]={[sort.type]:{$exists:false}}
+
   Project.find({
     $and:query
     },{},{sort:{[sort.type]:sort.value}}
   ).then(function(projects){
-    res.send({projects:projects.slice(req.params.from,req.params.to),length:projects.length});
-  }).catch(next);
+    let finalProjects=notEmptySortProjects.concat(projects);
+    res.send({projects:finalProjects.slice(req.params.from,req.params.to),length:finalProjects.length});
+  })
 
-})
+}
 
 
 router.get('/user-projects/:id', function(req, res, next){

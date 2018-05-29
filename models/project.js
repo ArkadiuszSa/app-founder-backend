@@ -22,11 +22,12 @@ const projectSchema = new Schema({
             enum:['$']
         },
         value:{
-            type: Number
+            type: String,
+            default:'to negotiation'
         }
     },
     timestamp:{
-        type: String
+        type: Date
     },
     deadline:{
         type: String
@@ -44,7 +45,6 @@ const projectSchema = new Schema({
 
 );
 
-projectSchema.index({title:'text',technologies:'text'})
 
 const Project = mongoose.model('project', projectSchema);
 

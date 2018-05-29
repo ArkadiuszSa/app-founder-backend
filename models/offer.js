@@ -17,7 +17,7 @@ const offerSchema = new Schema({
         type: String
     },
     timestamp: {
-        type:String
+        type:Date
     }
 });
 

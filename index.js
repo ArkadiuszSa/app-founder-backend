@@ -41,6 +41,8 @@ app.use(validator());
 app.use(boom());
 //app.use(interceptor);
 
+app.get('/', (req, res) => res.send('AppFounder api is online!'))
+
 mongoose.connect('mongodb://admin:admin@ds157528.mlab.com:57528/app_founder');
 mongoose.Promise = global.Promise;
 

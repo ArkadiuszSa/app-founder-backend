@@ -17,7 +17,7 @@ const invitationSchema = new Schema({
         type: String
     },
     timestamp:{
-        type: String
+        type: Date
     }
 });
 

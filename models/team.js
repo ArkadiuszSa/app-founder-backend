@@ -18,7 +18,7 @@ const teamSchema = new Schema({
         type: String
     }],
     timestamp:{
-        type: String
+        type: Date
     },
     visable:{
         type: Boolean,

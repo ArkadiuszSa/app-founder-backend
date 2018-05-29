@@ -30,7 +30,7 @@ const userSchema = new Schema({
         type:String
     }],
     timestamp:{
-        type: String
+        type: Date
     },
     visable:{
         type: Boolean,

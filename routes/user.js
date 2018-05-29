@@ -24,6 +24,62 @@ router.get('/user/:id', function(req, res, next){
   });
 })
 
+router.post('/users-range-filtred/:from&:to', function(req, res, next){
+
+  let sort=req.body.sort;
+  let filtr=req.body.filtr;
+  console.log(req.body)
+  let query=[];
+  query.push({'visable':true});
+  if(typeof(filtr.search.value)!=='undefined'&&filtr.search.value!==''&&filtr.search.value!==null){
+    let regex='(.*)'+filtr.search.value+'(.*)';
+
+    let $or=[
+      { ['fName']:new RegExp(regex,"i")},
+      { ['lfName']:new RegExp(regex,"i")},
+      { ['technologies']:new RegExp(regex,"i")}
+    ]
+
+    query.push({
+      $or
+    });
+
+    
+  }
+  findUsers(query,sort,req,res, next)
+
+///
+  // Project.find({'visable':true},{}, {sort:{"timestamp":-1}}).then(function(projects){
+  //   res.send(projects.slice(req.params.from,req.params.to));
+  // }).catch(next);
+})
+
+async function findUsers(query,sort,req,res, next) {
+
+  query.push({
+    [sort.type]:{$exists:true}
+  })
+console.log(query)
+  let notEmptySortUsers=await User.find({
+    $and:query
+    },{},{sort:{[sort.type]:sort.value}}
+  ).then(function(users){
+    return users;
+  })
+
+  query[query.length-1]={[sort.type]:{$exists:false}}
+console.log(query)
+  User.find({
+    $and:query
+    },{},{sort:{[sort.type]:sort.value}}
+  ).then(function(users){
+
+    let finalUsers=notEmptySortUsers.concat(users);
+    res.send({users:finalUsers.slice(req.params.from,req.params.to),length:finalUsers.length});
+  })
+
+}
+
 router.post('/user', function(req, res, next){
 
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);

@@ -19,7 +19,8 @@ const projectSchema = new Schema({
     budget:{
         currency:{
             type: String,
-            enum:['$']
+            enum:['$'],
+            default:'$'
         },
         value:{
             type: String,

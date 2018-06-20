@@ -33,7 +33,6 @@ router.post('/projects-range-filtred/:from&:to', function(req, res, next){
   let query=[];
   query.push({'visable':true});
 
-
   if(typeof(filtr.search.value)!=='undefined'&&filtr.search.value!==''&&filtr.search.value!==null){
     let regex='(.*)'+filtr.search.value+'(.*)';
 
@@ -45,7 +44,6 @@ router.post('/projects-range-filtred/:from&:to', function(req, res, next){
     query.push({
       $or
     });
-
   
   }
   if(filtr.status.value!==''&&filtr.status.value!==null&&filtr.status.value!==undefined){
@@ -72,6 +70,7 @@ router.post('/projects-range-filtred/:from&:to', function(req, res, next){
 
 });
 
+
 async function findProjects(query,sort,req,res, next) {
 
   query.push({
@@ -97,14 +96,12 @@ async function findProjects(query,sort,req,res, next) {
 
 }
 
-
 router.get('/user-projects/:id', function(req, res, next){
   Project.find({ownerId: req.params.id}).then(function(projects){
     res.send(projects);
   }).catch(next)
 
 })
-
 
 router.get('/project/:id', function(req, res, next){
 
@@ -119,7 +116,6 @@ router.post('/project', function(req, res, next){
   var errors = req.validationErrors();
 
   if (errors) {
-    console.log(errors);
     res.boom.badData('Data is not valid:', errors);
     return;
   } else {
@@ -133,7 +129,6 @@ router.post('/project', function(req, res, next){
 router.put('/project/:id', function(req, res, next){
 
     Project.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(project){
-      console.log(project)
         res.send(project);
     }).catch(next);
     

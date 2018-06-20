@@ -43,7 +43,11 @@ app.use(boom());
 
 app.get('/', (req, res) => res.send('AppFounder api is online!'))
 
-mongoose.connect('mongodb://admin:admin@ds157528.mlab.com:57528/app_founder');
+if(app.settings.env==='development'){
+    mongoose.connect('mongodb://admin:admin@ds157528.mlab.com:57528/app_founder');
+}else{
+    mongoose.connect('mongodb://admin:<admin1>@ds161780.mlab.com:61780/app-founder-production');
+}
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());

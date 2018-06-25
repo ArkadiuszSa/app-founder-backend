@@ -14,13 +14,11 @@ router.get('/assetsNames', (req, res, next) => {
     
     }).then(function(model){
         res.send(model);
-        console.log(model);
     }).catch(next);
   });
 
 router.post('/asset', (req, res) => {
     gfs = Grid(conn.db);
-    console.log(req.files);
     let part = req.files.file;
     let writeStream = gfs.createWriteStream({
         filename: 'img_' + part.name,
@@ -77,7 +75,6 @@ router.get('/asset/:imgName', (req, res) => {
         filename: imgname
    }).then(function(model){
         res.send(model);
-        console.log('wyjebao');
    }).catch(next);
 });
 

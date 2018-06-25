@@ -36,7 +36,6 @@ router.post('/teams-range-filtred/:from&:to', function(req, res, next){
 
   let sort=req.body.sort;
   let filtr=req.body.filtr;
-  console.log(req.body)
   let query=[];
   query.push({'visable':true});
   if(typeof(filtr.search.value)!=='undefined'&&filtr.search.value!==''&&filtr.search.value!==null){
@@ -54,10 +53,6 @@ router.post('/teams-range-filtred/:from&:to', function(req, res, next){
   }
   findTeams(query,sort,req,res, next)
 
-///
-  // Project.find({'visable':true},{}, {sort:{"timestamp":-1}}).then(function(projects){
-  //   res.send(projects.slice(req.params.from,req.params.to));
-  // }).catch(next);
 })
 
 async function findTeams(query,sort,req,res, next) {
@@ -65,7 +60,6 @@ async function findTeams(query,sort,req,res, next) {
   query.push({
     [sort.type]:{$exists:true}
   })
-console.log(query)
   let notEmptySortTeams=await Team.find({
     $and:query
     },{},{sort:{[sort.type]:sort.value}}
@@ -74,7 +68,6 @@ console.log(query)
   })
 
   query[query.length-1]={[sort.type]:{$exists:false}}
-console.log(query)
   Team.find({
     $and:query
     },{},{sort:{[sort.type]:sort.value}}
@@ -85,9 +78,6 @@ console.log(query)
   })
 
 }
-
-
-
 
 router.get('/teams-for-user/:id', function(req, res, next){
 

@@ -21,7 +21,7 @@ router.post('/register', function(req, res, next){
         role:'user',
         expiresIn: 86400
        }, 'secretPassword', {
-       expiresIn: 3600 // expires in 24 hours
+       expiresIn: 3600
      });
      res.status(200).send({ auth: true, token: token, id: user._id, role:'user'});
     }); 
@@ -30,7 +30,6 @@ router.post('/register', function(req, res, next){
 
 router.post('/login', function(req, res) {
   User.findOne({ email: req.body.email }, function (err, user) {
-    console.log(req.body);
 
     if (err) return res.status(500).send('Error on the server.');
     if (!user) return res.status(404).send('No user found.');
@@ -41,7 +40,7 @@ router.post('/login', function(req, res) {
        role:'user',
        expiresIn: 86400
       }, 'secretPassword', {
-      expiresIn: 3600 // expires in 24 hours
+      expiresIn: 3600
     });
     res.status(200).send({ auth: true, token: token, id: user._id, role:'user'});
   });
@@ -50,9 +49,7 @@ router.post('/login', function(req, res) {
 router.post('/check-email', function(req, res) {
 
 
-  console.log(req.body)
   User.findOne({ email: req.body.email }, function (err, user) {
-    console.log(user)
     if(user!==null){
       res.send({response:'finded'})
     }

@@ -10,7 +10,6 @@ router.get('/users', function(req, res, next){
   User.find({'visable':true}).then(function(data){
     res.send(data);
   }).catch(res=>{
-    console.log(res);
     res.send('dziala')
   })
 })
@@ -28,7 +27,6 @@ router.post('/users-range-filtred/:from&:to', function(req, res, next){
 
   let sort=req.body.sort;
   let filtr=req.body.filtr;
-  console.log(req.body)
   let query=[];
   query.push({'visable':true});
   if(typeof(filtr.search.value)!=='undefined'&&filtr.search.value!==''&&filtr.search.value!==null){
@@ -48,10 +46,6 @@ router.post('/users-range-filtred/:from&:to', function(req, res, next){
   }
   findUsers(query,sort,req,res, next)
 
-///
-  // Project.find({'visable':true},{}, {sort:{"timestamp":-1}}).then(function(projects){
-  //   res.send(projects.slice(req.params.from,req.params.to));
-  // }).catch(next);
 })
 
 async function findUsers(query,sort,req,res, next) {
@@ -59,7 +53,6 @@ async function findUsers(query,sort,req,res, next) {
   query.push({
     [sort.type]:{$exists:true}
   })
-console.log(query)
   let notEmptySortUsers=await User.find({
     $and:query
     },{},{sort:{[sort.type]:sort.value}}
@@ -68,7 +61,6 @@ console.log(query)
   })
 
   query[query.length-1]={[sort.type]:{$exists:false}}
-console.log(query)
   User.find({
     $and:query
     },{},{sort:{[sort.type]:sort.value}}
@@ -92,7 +84,7 @@ router.post('/user', function(req, res, next){
   function (err, user) {
     if (err) return res.status(500).send("There was a problem registering the user.")
     var token = jwt.sign({ id: user._id }, 'secretPassword', {
-      expiresIn: 86400 // expires in 24 hours
+      expiresIn: 86400
     });
     res.status(200).send({ auth: true, token: token });
   }); 

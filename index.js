@@ -12,8 +12,7 @@ var interceptor = require('express-interceptor');
 var interceptor=interceptor((request,response)=>{
     return {
         isInterceptable: function(){
-           
-          if(request.baseUrl==='/api'&&request.url!=='/login'&&request.url!=='/register'){
+          if(request.baseUrl==='/api'&&(request.url==='/login'||request.url==='/register'||request.url==='/check-email')){
               return false;
           }else{
               return true;
@@ -29,25 +28,22 @@ var interceptor=interceptor((request,response)=>{
                     send(body)
                 }    
             }));
-          
         }
     }
-    })
+})
 
 
 const app = express();
 app.use(cors())
 app.use(validator());
 app.use(boom());
-//app.use(interceptor);
+app.use(interceptor);
 
 app.get('/', (req, res) => res.send('AppFounder api is online!'))
 
-if(app.settings.env==='development'){
-    mongoose.connect('mongodb://admin:admin@ds157528.mlab.com:57528/app_founder');
-}else{
-    mongoose.connect('mongodb://admin:<admin1>@ds161780.mlab.com:61780/app-founder-production');
-}
+//mongoose.connect('mongodb://admin:admin@ds157528.mlab.com:57528/app_founder');
+mongoose.connect('mongodb://admin:admin1@ds161780.mlab.com:61780/app-founder-production');
+
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());

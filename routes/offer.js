@@ -7,12 +7,11 @@ const Offer= require('../models/offer');
 router.get('/offers', function(req, res, next){
   Offer.find({}).then(function(offers){
     res.send(offers);
-  })
+  }).catch(next);
 })
 
 router.get('/project-offers/:projectId', function(req, res, next){
   Offer.find({projectId: req.params.projectId}).then(function(offer){
-    console.log(offer);
     res.send(offer);
   }).catch(next);
 })
@@ -20,11 +19,10 @@ router.get('/project-offers/:projectId', function(req, res, next){
 router.get('/offer/:id', function(req, res, next){
     Offer.findById({_id: req.params.id}).then(function(offer){
     res.send(offer);
-  })
+  }).catch(next);
 })
 
 router.post('/offer', function(req, res, next){
-  console.log(req.body);
   Offer.create(req.body).then(function(offer){
       res.send(offer);
   }).catch(next);

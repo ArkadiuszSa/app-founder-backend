@@ -37,7 +37,7 @@ const app = express();
 app.use(cors())
 app.use(validator());
 app.use(boom());
-app.use(interceptor);
+//app.use(interceptor);
 
 app.get('/', (req, res) => res.send('AppFounder api is online!'))
 

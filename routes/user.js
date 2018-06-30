@@ -23,6 +23,14 @@ router.get('/user/:id', function(req, res, next){
   });
 })
 
+router.get('/users-number', function(req, res, next){
+ User.find({'visable':true}).then(function(users){
+    res.send({"value":users.length});
+  }).catch((err)=>{
+    next(err);
+  })
+})
+
 router.post('/users-range-filtred/:from&:to', function(req, res, next){
 
   let sort=req.body.sort;

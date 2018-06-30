@@ -47,7 +47,7 @@ mongoose.connect('mongodb://admin:admin1@ds161780.mlab.com:61780/app-founder-pro
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
-app.use(busboyBodyParser({ limit: '10mb' }) );
+app.use(busboyBodyParser({ limit: '10mb' }));
 app.use('/api', require('./routes/user'));
 app.use('/api', require('./routes/project'));
 app.use('/api', require('./routes/team'));
@@ -55,7 +55,7 @@ app.use('/api', require('./routes/auth'));
 app.use('/api', require('./routes/asset'));
 app.use('/api', require('./routes/invitation'));
 app.use('/api', require('./routes/offer'));
-
+app.use('/api', require('./routes/mailer'));
 app.use('/assets/img', express.static(__dirname+'/assets/img'))
 
 app.listen(process.env.PORT || 4000, function(){

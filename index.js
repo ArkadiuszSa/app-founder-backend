@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const busboyBodyParser = require('busboy-body-parser');
 var interceptor = require('express-interceptor');
-
+require('dotenv').config()
 var interceptor=interceptor((request,response)=>{
     return {
         isInterceptable: function(){
@@ -41,9 +41,7 @@ app.use(boom());
 
 app.get('/', (req, res) => res.send('AppFounder api is online!'))
 
-//mongoose.connect('mongodb://admin:admin@ds157528.mlab.com:57528/app_founder');
-mongoose.connect('mongodb://admin:admin1@ds161780.mlab.com:61780/app-founder-production');
-
+mongoose.connect(process.env.CONNECTION_STRING);
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());

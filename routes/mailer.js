@@ -8,15 +8,15 @@ router.post('/send-email', function(req, res, next){
         service: 'gmail',
         host:'smtp.gmail.com',
         auth:{
-            user:'app.founder.contact@gmail.com',
-            pass:'app-founder1'    
+            user:process.env.EMAIL_USERNAME,
+            pass:process.env.EMAIL_PASSWORD    
         
         }
     })
 
     var mailOptions={
-        from: 'User <app.founder.contact@gmail.com>',
-        to:'app.founder.contact@gmail.com',
+        from: 'User <'+process.env.EMAIL_USERNAME+'>',
+        to: process.env.EMAIL_USERNAME,
         subject:'User: '+req.body.userEmail+' sended message.',
         text:req.body.message
     }

@@ -19,14 +19,13 @@ router.post('/register', function(req, res, next){
       var token = jwt.sign({
         id: user._id,
         role:'user',
-        expiresIn: 86400
-       }, 'secretPassword', {
+        expiresIn: 3600
+       }, process.env.SECRET_PASSWORD, {
        expiresIn: 3600
      });
      res.status(200).send({ auth: true, token: token, id: user._id, role:'user'});
     }); 
 });
-
 
 router.post('/login', function(req, res) {
   User.findOne({ email: req.body.email }, function (err, user) {
@@ -38,8 +37,8 @@ router.post('/login', function(req, res) {
     var token = jwt.sign({
        id: user._id,
        role:'user',
-       expiresIn: 86400
-      }, 'secretPassword', {
+       expiresIn: 3600
+      }, process.env.SECRET_PASSWORD, {
       expiresIn: 3600
     });
     res.status(200).send({ auth: true, token: token, id: user._id, role:'user'});
@@ -47,7 +46,6 @@ router.post('/login', function(req, res) {
 });
 
 router.post('/check-email', function(req, res) {
-
 
   User.findOne({ email: req.body.email }, function (err, user) {
     if(user!==null){
@@ -58,7 +56,5 @@ router.post('/check-email', function(req, res) {
     }
   });
 });
-
-
 
 module.exports = router;

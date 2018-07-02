@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js start
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add .
 
 PATH: 
   C:\cmder\bin;C:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;C:\cmder\vendor\conemu-maximus5;C:\cmder\vendor\conemu-maximus5\ConEmu;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft MPI\Bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\dotnet\;C:\Go\bin;C:\Program Files\Git\cmd;G:\calibre\;C:\WINDOWS\system32\wbem;G:\BlueSoil\Mobile;C:\Ruby24-x64\bin;C:\Users\Arkadiusz Banan\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\Microsoft VS Code\bin;C:\Users\Arkadiusz Banan\AppData\Roaming\npm;C:\Users\Arkadiusz Banan\AppData\Local\Yarn\bin;%GOPATH%\bin;G:\Heroku\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\share\vim\vim74;C:\cmder\
@@ -33,6 +33,7 @@ npm manifest:
       "boom": "^7.2.0",
       "busboy-body-parser": "^0.3.2",
       "cors": "^2.8.4",
+      "dotenv": "^6.0.0",
       "express": "^4.16.2",
       "express-boom": "^2.0.0",
       "express-interceptor": "^1.2.0",
@@ -616,6 +617,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
     dependencies:
       is-obj "^1.0.0"
+  
+  dotenv@^6.0.0:
+    version "6.0.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
   
   duplexer3@^0.1.4:
     version "0.1.4"
@@ -2523,10 +2528,6 @@ Lockfile:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4"
   
-  xoauth2@^1.2.0:
-    version "1.2.0"
-    resolved "https://registry.yarnpkg.com/xoauth2/-/xoauth2-1.2.0.tgz#f2eefac11472c971ea3bc46e554eb4b1232146e5"
-  
   xtend@^4.0.1:
     version "4.0.1"
     resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
@@ -2536,17 +2537,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
 
 Trace: 
-  Error: Command failed.
-  Exit code: 3221225786
-  Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c nodemon app.js
-  Directory: C:\Programowanie\Projekty\appFounder\backend
-  Output:
-  
-      at ProcessTermError.MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
-      at new ProcessTermError (C:\Program Files (x86)\Yarn\lib\cli.js:226:113)
-      at ChildProcess.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:30281:17)
-      at emitTwo (events.js:126:13)
-      at ChildProcess.emit (events.js:214:7)
-      at maybeClose (internal/child_process.js:925:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
+  Error: Received malformed response from registry for undefined. The registry may be down.
+      at new MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
+      at Function.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:51419:15)
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:98:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:116:14
+      at new Promise (<anonymous>)
+      at new F (C:\Program Files (x86)\Yarn\lib\cli.js:23451:28)
+      at Function.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:95:12)
+      at Function.findVersionInRegistryResponse (C:\Program Files (x86)\Yarn\lib\cli.js:51461:19)
+      at NpmResolver.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:51479:28)

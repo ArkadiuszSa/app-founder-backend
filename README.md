@@ -26,6 +26,6 @@ In plan:
 * make full secured api. At this time every loged user can make any action. I want also valid all api data.
 * and fix bugs of course ( ͡° ͜ʖ ͡°)
 
-
-
-
+![Image1](https://preview.ibb.co/e4cEbU/screencapture_app_founder_herokuapp_app_projects_2018_08_13_01_01_27.png)
+![Image2](https://preview.ibb.co/g1sVGU/screencapture_app_founder_herokuapp_app_project_profile_5b2a48c0b2c3a305980d8a1b_2018_08_13_01_29_45.png)
+![Image3](https://preview.ibb.co/hXdvGU/2.png)
